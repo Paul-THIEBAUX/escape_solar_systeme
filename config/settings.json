@@ -1,0 +1,165 @@
+{
+  "projects": {
+    "54212CB9-415A-4328-6DD8-4FEC6BF856E9": {
+      "config-debug": {
+        "additionalDependencies": [
+          "%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+        ],
+        "additionalLibraryDirectories": [
+        ],
+        "preprocessorDefinitions": [
+        ]
+      },
+      "config-release": {
+        "additionalDependencies": [],
+        "additionalIncludeDirectories": [],
+        "additionalLibraryDirectories": [],
+        "preprocessorDefinitions": []
+      },
+      "dependencies": [
+        "5486424A-3498-2513-4EE0-2B6D64DE7470",
+        "54961438-1180-7B10-1855-781E21A93B43"
+      ],
+      "dependents": [
+        "74C953F4-397E-34EF-5EE4-6ADB4D5E66D1"
+      ],
+      "name": "Engine",
+      "property-lib": true,
+      "property-pch": false,
+      "property-vcpkg": false,
+      "property-window": false
+    },
+    "5486424A-3498-2513-4EE0-2B6D64DE7470": {
+      "config-debug": {
+        "additionalDependencies": [
+          "SDL3.lib;SDL3_mixer.lib;SDL3_image.lib;%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+          "$(SolutionDir)../lib/SDL3/include",
+          "$(SolutionDir)../lib/SDL3_mixer/include",
+          "$(SolutionDir)../lib/SDL3_image/include"
+        ],
+        "additionalLibraryDirectories": [
+          "$(SolutionDir)../lib/SDL3/lib/x64",
+          "$(SolutionDir)../lib/SDL3_mixer/lib/x64",
+          "$(SolutionDir)../lib/SDL3_image/lib/x64"
+        ],
+        "preprocessorDefinitions": []
+      },
+      "config-release": {
+        "additionalDependencies": [
+          "SDL3.lib;SDL3_mixer.lib;SDL3_image.lib;%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+          "$(SolutionDir)../lib/SDL3/include",
+          "$(SolutionDir)../lib/SDL3_mixer/include",
+          "$(SolutionDir)../lib/SDL3_image/include"
+        ],
+        "additionalLibraryDirectories": [
+          "$(SolutionDir)../lib/SDL3/lib/x64",
+          "$(SolutionDir)../lib/SDL3_mixer/lib/x64",
+          "$(SolutionDir)../lib/SDL3_image/lib/x64"
+        ],
+        "preprocessorDefinitions": []
+      },
+      "dependencies": [
+        "54961438-1180-7B10-1855-781E21A93B43"
+      ],
+      "dependents": [
+        "54212CB9-415A-4328-6DD8-4FEC6BF856E9"
+      ],
+      "name": "Render",
+      "property-lib": true,
+      "property-pch": false,
+      "property-vcpkg": false,
+      "property-window": false
+    },
+    "54961438-1180-7B10-1855-781E21A93B43": {
+      "config-debug": {
+        "additionalDependencies": [
+          "%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+        ],
+        "additionalLibraryDirectories": [
+        ],
+        "preprocessorDefinitions": [
+        ]
+      },
+      "config-release": {
+        "additionalDependencies": [],
+        "additionalIncludeDirectories": [],
+        "additionalLibraryDirectories": [],
+        "preprocessorDefinitions": []
+      },
+      "dependencies": [],
+      "dependents": [
+        "5486424A-3498-2513-4EE0-2B6D64DE7470",
+        "74C953F4-397E-34EF-5EE4-6ADB4D5E66D1",
+        "54212CB9-415A-4328-6DD8-4FEC6BF856E9"
+      ],
+      "name": "Core",
+      "property-lib": true,
+      "property-pch": false,
+      "property-vcpkg": false,
+      "property-window": false
+    },
+    "74C953F4-397E-34EF-5EE4-6ADB4D5E66D1": {
+      "config-debug": {
+        "additionalDependencies": [
+          "SDL3.lib",
+          "SDL3_mixer.lib",
+          "SDL3_image.lib",
+          "%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+        ],
+        "additionalLibraryDirectories": [
+          "$(SolutionDir)../lib/SDL3/lib/x64",
+          "$(SolutionDir)../lib/SDL3_mixer/lib/x64",
+          "$(SolutionDir)../lib/SDL3_image/lib/x64"
+        ],
+        "preprocessorDefinitions": [
+        ]
+      },
+      "config-release": {
+        "additionalDependencies": [
+          "SDL3.lib",
+          "SDL3_mixer.lib",
+          "SDL3_image.lib",
+          "%(AdditionalDependencies)"
+        ],
+        "additionalIncludeDirectories": [
+        ],
+        "additionalLibraryDirectories": [
+          "$(SolutionDir)../lib/SDL3/lib/x64",
+          "$(SolutionDir)../lib/SDL3_mixer/lib/x64",
+          "$(SolutionDir)../lib/SDL3_image/lib/x64"
+        ],
+        "preprocessorDefinitions": []
+      },
+      "dependencies": [
+        "54212CB9-415A-4328-6DD8-4FEC6BF856E9",
+        "54961438-1180-7B10-1855-781E21A93B43"
+      ],
+      "dependents": [],
+      "name": "gcle",
+      "property-lib": false,
+      "property-pch": false,
+      "property-vcpkg": false,
+      "property-window": true
+    }
+  },
+  "projects_name_to_guid": {
+    "Core": "54961438-1180-7B10-1855-781E21A93B43",
+    "Engine": "54212CB9-415A-4328-6DD8-4FEC6BF856E9",
+    "Render": "5486424A-3498-2513-4EE0-2B6D64DE7470",
+    "gcle": "74C953F4-397E-34EF-5EE4-6ADB4D5E66D1"
+  },
+  "solution_guid": "52061D0A-4756-2D9A-75C7-6D0615E635A2",
+  "solution_name": "gcle",
+  "startup_project": "74C953F4-397E-34EF-5EE4-6ADB4D5E66D1",
+  "version": "2.0"
+}
