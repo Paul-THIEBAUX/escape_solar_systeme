@@ -11,7 +11,7 @@
 
 void MainScene::OnInitialize()
 {
-	debug = true;
+	debug = false;
 	
 	Scene::OnInitialize();
 	// afficher du text
@@ -40,9 +40,15 @@ void MainScene::OnInitialize()
 	}
 
 	Entity* WallUp = CreateEntity<Entity>(gcle::Shapes::Rectangle);
-	{
+	{	
 		WallUp->SetTag(Tag::Obstacle);
-		WallUp->SetColor(Color::Red);
+		if (debug == true) {
+			WallUp->SetColor(Color::Red);
+		}
+		else {
+			WallUp->SetColor(Color::Transparent);;
+		}
+		
 		WallUp->SetScale({ 20, 1 });
 		WallUp->SetPosition(35, 50);
 		WallUp->SetRigidBody(true);
@@ -55,7 +61,12 @@ void MainScene::OnInitialize()
 	Entity* WallDown = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	{
 		WallDown->SetTag(Tag::Obstacle);
-		WallDown->SetColor(Color::Red);
+		if (debug == true) {
+			WallDown->SetColor(Color::Red);
+		}
+		else {
+			WallDown->SetColor(Color::Transparent);;
+		}
 		WallDown->SetScale({ 20, 1 });
 		WallDown->SetPosition(35, 810);
 		WallDown->SetRigidBody(true);
@@ -68,7 +79,12 @@ void MainScene::OnInitialize()
 	Entity* WallLeft = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	{
 		WallLeft->SetTag(Tag::Obstacle);
-		WallLeft->SetColor(Color::Red);
+		if (debug == true) {
+			WallLeft->SetColor(Color::Red);
+		}
+		else {
+			WallLeft->SetColor(Color::Transparent);;
+		}
 		WallLeft->SetScale({ 1, 10 });
 		WallLeft->SetPosition(-1000, 400);
 		WallLeft->SetRigidBody(true);
@@ -81,7 +97,12 @@ void MainScene::OnInitialize()
 	Entity* WallRight = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	{
 		WallRight->SetTag(Tag::Obstacle);
-		WallRight->SetColor(Color::Red);
+		if (debug == true) {
+			WallRight->SetColor(Color::Red);
+		}
+		else {
+			WallRight->SetColor(Color::Transparent);;
+		}
 		WallRight->SetScale({ 1, 5 });
 		WallRight->SetPosition(985, 600);
 		WallRight->SetRigidBody(true);
