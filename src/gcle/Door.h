@@ -1,5 +1,22 @@
 #pragma once
-class Door
+#include "Engine/Entity.h"
+
+class Door : public Entity
 {
+private:
+
+	std::string sceneId;
+
+	bool lock = true;
+
+public:
+
+	void SetId(const std::string& id);
+	void Unlock();
+	void Lock();
+
+	void OnUpdate() override;
+	void OnInitialize() override;
+	void OnCollision(Entity* collidedWith) override;
 };
 

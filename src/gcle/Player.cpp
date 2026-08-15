@@ -1,2 +1,6 @@
-#include "../Engine/Entity.h"
+#include "Player.h"
 
+void MainPlayer::OnInitialize()
+{
+
+}

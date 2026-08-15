@@ -5,7 +5,10 @@
 #include "Engine/PhysicsManager.h"
 
 #include "Tag.h"
-#include "gcle/Player.h"
+#include "Player.h"
+#include "Door.h"
+#include "SaveManager.h"
+#include "Wall.h"
 
 //#include "Render/Shape.h"
 
@@ -17,8 +20,6 @@ void MainScene::OnInitialize()
 	// afficher du text
 	//std::string text = "Test";
 	//CreateText(text, { 40, 40 }, 50);
-
-	Collider* setUpCollider = nullptr;
 
 	//creation d'un player classique
 	player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
@@ -36,93 +37,68 @@ void MainScene::OnInitialize()
 		player->SetRigidBody(true);
 		player->SetStatic(false);
 		player->SetLayer(1);
-		setUpCollider = player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
+		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
 	}
 
-	Entity* WallUp = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{	
-		WallUp->SetTag(Tag::Obstacle);
 		if (debug == true) {
 			WallUp->SetColor(Color::Red);
 		}
 		else {
 			WallUp->SetColor(Color::Transparent);;
 		}
-		
-		WallUp->SetScale({ 20, 1 });
 		WallUp->SetPosition(35, 50);
-		WallUp->SetRigidBody(true);
-		WallUp->SetStatic(true);
-		WallUp->SetLayer(1);
-		setUpCollider = WallUp->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		WallUp->SetScale({ 20, 1 });
 		BedRoomEntities.push_back(WallUp);
 	}
 
-	Entity* WallDown = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	Wall* WallDown = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
-		WallDown->SetTag(Tag::Obstacle);
 		if (debug == true) {
 			WallDown->SetColor(Color::Red);
 		}
 		else {
 			WallDown->SetColor(Color::Transparent);;
 		}
-		WallDown->SetScale({ 20, 1 });
 		WallDown->SetPosition(35, 810);
-		WallDown->SetRigidBody(true);
-		WallDown->SetStatic(true);
-		WallDown->SetLayer(1);
-		setUpCollider = WallDown->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		WallDown->SetScale({ 20, 1 });
 		BedRoomEntities.push_back(WallDown);
 	}
 
-	Entity* WallLeft = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	Wall* WallLeft = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
-		WallLeft->SetTag(Tag::Obstacle);
 		if (debug == true) {
 			WallLeft->SetColor(Color::Red);
 		}
 		else {
 			WallLeft->SetColor(Color::Transparent);;
 		}
-		WallLeft->SetScale({ 1, 10 });
 		WallLeft->SetPosition(-1000, 400);
-		WallLeft->SetRigidBody(true);
-		WallLeft->SetStatic(true);
-		WallLeft->SetLayer(1);
-		setUpCollider = WallLeft->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		WallLeft->SetScale({ 1, 10 });
 		BedRoomEntities.push_back(WallLeft);
 	}
 
-	Entity* WallRight = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	Wall* WallRight = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
-		WallRight->SetTag(Tag::Obstacle);
 		if (debug == true) {
 			WallRight->SetColor(Color::Red);
 		}
 		else {
 			WallRight->SetColor(Color::Transparent);;
 		}
-		WallRight->SetScale({ 1, 5 });
 		WallRight->SetPosition(985, 600);
-		WallRight->SetRigidBody(true);
-		WallRight->SetStatic(true);
-		WallRight->SetLayer(1);
-		setUpCollider = WallRight->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		WallRight->SetScale({ 1,5 });
 		BedRoomEntities.push_back(WallRight);
 	}
 
-	Entity* Door = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
-		Door->SetTag(Tag::Obstacle);
-		Door->SetColor(Color::Red);
-		Door->SetScale({ 1, 5 });
-		Door->SetPosition(985, 600);
-		Door->SetRigidBody(true);
-		Door->SetStatic(true);
-		Door->SetLayer(1);
-		setUpCollider = Door->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
-		BedRoomEntities.push_back(Door);
+		door->Unlock();
+		door->SetPosition(985, 600);
+		door->SetId("SampleScene");
+		door->SetScale({ 1, 5 });
+		BedRoomEntities.push_back(door);
 	}
 
 
@@ -130,12 +106,12 @@ void MainScene::OnInitialize()
 	{
 		Bed->SetTag(Tag::Obstacle);
 		Bed->SetTexture("S_Bed");
-		Bed->SetScale({ 4, 1.65 });
+		Bed->SetScale({ 4.f, 1.65f });
 		Bed->SetPosition(-275, 107);
 		Bed->SetRigidBody(true);
 		Bed->SetStatic(true);
 		Bed->SetLayer(1);
-		setUpCollider = Bed->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		Bed->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Bed);
 	}
 
@@ -148,7 +124,7 @@ void MainScene::OnInitialize()
 		Table->SetRigidBody(true);
 		Table->SetStatic(true);
 		Table->SetLayer(1);
-		setUpCollider = Table->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		Table->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Table);
 	}
 
@@ -162,10 +138,8 @@ void MainScene::OnInitialize()
 		Background->SetRigidBody(false);
 		Background->SetStatic(true);
 		Background->SetTexture("S_BedRoom");
-		setUpCollider = Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
+		Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
 	}
-
-
 
 	//creation d'un trigger
 	//Entity* entity2 = CreateEntity<Entity>(gcle::Shapes::Rectangle);
@@ -198,19 +172,18 @@ void MainScene::OnUpdate(Clock& time)
 {
 	Scene::OnUpdate(time);
 	float32 j = GetMainCamera()->GetZoom();
+
 	if (InputManager::GetInstance().IsDown('I'))
 	{
 		GetMainCamera()->SetZoom(j+1);
 	}
+
 	if (InputManager::GetInstance().IsDown('K'))
 	{
 		if (j > 1) {
 			GetMainCamera()->SetZoom(j - 1);
 		}
 	}
-
-
-	
 
 	if ((GetKeyState(VK_LBUTTON) & 0x80) != 0 && action == false)
 	{

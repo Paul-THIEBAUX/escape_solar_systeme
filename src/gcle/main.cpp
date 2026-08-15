@@ -8,11 +8,11 @@
 
 #include "include.h"
 
+#include "SampleScene.h"
+
 #include "MainScene.h"
 #include "SceneManager.h"
 #include "Profiler.h"
-
-#include "Tuto-GCLE/DemoScene.h"
 
 #undef main
 
@@ -40,7 +40,7 @@ void CreateDebugConsole()
 void CreateScenes()
 {
     SceneManager::GetInstance().CreateScene<MainScene>("MainScene");
-    //SceneManager::GetInstance().CreateScene<MainScene>("Sample");
+    SceneManager::GetInstance().CreateScene<SampleScene>("SampleScene");
 }
 
 void Destroy()
