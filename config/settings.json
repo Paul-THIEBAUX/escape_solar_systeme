@@ -115,6 +115,7 @@
           "%(AdditionalDependencies)"
         ],
         "additionalIncludeDirectories": [
+          "$(SolutionDir)../lib/nlohmann"
         ],
         "additionalLibraryDirectories": [
           "$(SolutionDir)../lib/SDL3/lib/x64",
@@ -132,11 +133,13 @@
           "%(AdditionalDependencies)"
         ],
         "additionalIncludeDirectories": [
+          "$(SolutionDir)../lib/nlohmann"
         ],
         "additionalLibraryDirectories": [
           "$(SolutionDir)../lib/SDL3/lib/x64",
           "$(SolutionDir)../lib/SDL3_mixer/lib/x64",
           "$(SolutionDir)../lib/SDL3_image/lib/x64"
+          
         ],
         "preprocessorDefinitions": []
       },

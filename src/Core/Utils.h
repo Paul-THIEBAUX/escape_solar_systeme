@@ -106,3 +106,10 @@ struct AABB {
 
 AABB GetRotatedAABB(Vector2<float32> center, Vector2<float32> halfSize, Radians rotation);
 
+template<typename T>
+T Clamp(T val, T min, T max)
+{
+    if (val > max) return max;
+    if (val < min) return min;
+    return val;
+}

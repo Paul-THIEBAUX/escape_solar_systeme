@@ -1,11 +1,12 @@
 #pragma once
 #include "Engine/Entity.h"
 
-class MainPlayer : public Entity
+class Wall : public Entity
 {
 private:
 
 public:
+
 	void OnInitialize() override;
 };
 
