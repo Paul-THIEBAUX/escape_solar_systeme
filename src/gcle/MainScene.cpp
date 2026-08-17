@@ -9,6 +9,7 @@
 #include "Door.h"
 #include "SaveManager.h"
 #include "Wall.h"
+#include "Inventory.h"
 
 //#include "Render/Shape.h"
 
@@ -38,6 +39,7 @@ void MainScene::OnInitialize()
 		player->SetStatic(false);
 		player->SetLayer(1);
 		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
+		player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
 	}
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -92,7 +94,7 @@ void MainScene::OnInitialize()
 		BedRoomEntities.push_back(WallRight);
 	}
 
-	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
 		door->Unlock();
 		door->SetPosition(985, 600);
@@ -203,6 +205,9 @@ void MainScene::OnUpdate(Clock& time)
 		pEntity->Destroy();
 		}
 	}
+
+	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
+	door->CheckDoor(player, pos);
 }
 
 void MainScene::OnCollisionAB(MainPlayer* A, Entity* B)

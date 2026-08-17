@@ -172,7 +172,7 @@ void Scene::Update(Clock& time) const
 			if (ui->IsActiveIn(m_Tag))
 				ui->Update(static_cast<float32>(time.GetDeltaTime()));
 		}
-	}  
+	} 
 }
 
 #ifdef _DEBUG

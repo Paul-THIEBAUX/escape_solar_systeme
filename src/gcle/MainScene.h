@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Engine\Scene.h"
 
+class Door;
+
 class MainScene : public Scene
 {
 public:
@@ -17,6 +19,7 @@ private:
 	Entity* otherEntity  = nullptr;
 	Camera* pSceneCamera = nullptr;
 	MainPlayer* player	 = nullptr;
+	Door* door = nullptr;
 
 	std::vector<Entity*> BedRoomEntities;
 

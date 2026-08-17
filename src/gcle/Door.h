@@ -18,5 +18,7 @@ public:
 	void OnUpdate() override;
 	void OnInitialize() override;
 	void OnCollision(Entity* collidedWith) override;
+
+	void CheckDoor(Entity* player, const Vector2f& pos);
 };
 
