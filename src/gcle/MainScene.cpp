@@ -59,7 +59,7 @@ void MainScene::OnInitialize()
 			WallDown->SetColor(Color::Red);
 		}
 		else {
-			WallDown->SetColor(Color::Transparent);;
+			WallDown->SetColor(Color::Transparent);
 		}
 		WallDown->SetPosition(35, 810);
 		WallDown->SetScale({ 20, 1 });
@@ -72,7 +72,7 @@ void MainScene::OnInitialize()
 			WallLeft->SetColor(Color::Red);
 		}
 		else {
-			WallLeft->SetColor(Color::Transparent);;
+			WallLeft->SetColor(Color::Transparent);
 		}
 		WallLeft->SetPosition(-1000, 400);
 		WallLeft->SetScale({ 1, 10 });
@@ -85,7 +85,7 @@ void MainScene::OnInitialize()
 			WallRight->SetColor(Color::Red);
 		}
 		else {
-			WallRight->SetColor(Color::Transparent);;
+			WallRight->SetColor(Color::Transparent);
 		}
 		WallRight->SetPosition(985, 600);
 		WallRight->SetScale({ 1,5 });
@@ -95,8 +95,8 @@ void MainScene::OnInitialize()
 	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
 		door->Unlock();
-		door->SetPosition(985, 600);
-		door->SetId("SampleScene");
+		door->SetPosition(985, 400);
+		door->SetId("CorridorScene");
 		door->SetScale({ 1, 5 });
 		BedRoomEntities.push_back(door);
 	}
@@ -140,7 +140,6 @@ void MainScene::OnInitialize()
 		Background->SetTexture("S_BedRoom");
 		Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
 	}
-
 	//creation d'un trigger
 	//Entity* entity2 = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	//{
