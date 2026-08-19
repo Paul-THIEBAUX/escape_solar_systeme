@@ -40,6 +40,7 @@ void MainScene::OnInitialize()
 		player->SetLayer(1);
 		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
 		player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
+		player->InitCursor(CreateEntity<Entity>(gcle::Shapes::Rectangle));
 	}
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -142,6 +143,7 @@ void MainScene::OnInitialize()
 		Background->SetTexture("S_BedRoom");
 		Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
 	}
+
 	//creation d'un trigger
 	//Entity* entity2 = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	//{

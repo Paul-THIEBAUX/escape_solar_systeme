@@ -12,8 +12,11 @@ private:
 public:
 
 	void InitInventory(Inventory* inv);
+	void InitCursor(Entity* cursor);
 
 	void OnInitialize() override;
 	void OnUpdate() override;
+
+	void AddEntity(Entity* entity);
 };
 
