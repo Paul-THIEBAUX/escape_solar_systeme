@@ -9,6 +9,7 @@
 #include "Door.h"
 #include "SaveManager.h"
 #include "Wall.h"
+#include "Inventory.h"
 
 //#include "Render/Shape.h"
 
@@ -38,6 +39,7 @@ void CorridorScene::OnInitialize()
 		player->SetStatic(false);
 		player->SetLayer(1);
 		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
 	}
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);

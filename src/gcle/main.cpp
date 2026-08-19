@@ -9,6 +9,12 @@
 #include "include.h"
 
 #include "SampleScene.h"
+#include "CorridorScene.h"
+#include "ReactorScene.h"
+#include "LaboScene.h"
+#include "CuisineScene.h"
+#include "StorageScene.h"
+#include "CabineScene.h"
 
 #include "MainScene.h"
 #include "SceneManager.h"
@@ -40,7 +46,12 @@ void CreateDebugConsole()
 void CreateScenes()
 {
     SceneManager::GetInstance().CreateScene<MainScene>("MainScene");
-    SceneManager::GetInstance().CreateScene<SampleScene>("SampleScene");
+    SceneManager::GetInstance().CreateScene<CorridorScene>("CorridorScene");
+    SceneManager::GetInstance().CreateScene<ReactorScene>("ReactorScene");
+    SceneManager::GetInstance().CreateScene<LaboScene>("LaboScene");
+    SceneManager::GetInstance().CreateScene<CuisineScene>("CuisineScene");
+    SceneManager::GetInstance().CreateScene<StorageScene>("StorageScene");
+    SceneManager::GetInstance().CreateScene<CabineScene>("CabineScene");
 }
 
 void Destroy()
