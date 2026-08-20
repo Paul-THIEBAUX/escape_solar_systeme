@@ -78,7 +78,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     gm.Init(1680, 900, 120);
 
     CreateScenes();
-    SceneManager::GetInstance().SetCurrentSceneWithTag("MainScene");
+    SceneManager::GetInstance().SetCurrentSceneWithTag("MainScene", true);
 
     gm.Loop();
 

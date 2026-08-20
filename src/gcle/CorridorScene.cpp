@@ -86,6 +86,17 @@ void CorridorScene::OnInitialize()
 		door->SetId("CorridorScene");
 		door->SetScale({ 1, 5 });
 		CorridorEntities.push_back(door);
+		Doors.push_back(door);
+	}
+
+	Door* door2 = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		door2->Unlock();
+		door2->SetPosition(-1000, 400);
+		door2->SetId("MainScene");
+		door2->SetScale({ 1, 5 });
+		CorridorEntities.push_back(door);
+		Doors.push_back(door2);
 	}
 
 
@@ -163,6 +174,12 @@ void CorridorScene::OnUpdate(Clock& time)
 		{
 			pEntity->Destroy();
 		}
+	}
+
+	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
+	for (Door* door : Doors)
+	{
+		door->CheckDoor(player, pos);
 	}
 }
 

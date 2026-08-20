@@ -45,6 +45,6 @@ void Door::CheckDoor(Entity* player, const Vector2f& pos)
 	if (IsInside(pos))
 	{
 		if (InputManager::GetInstance().IsDown(LeftButton))
-			SceneManager::GetInstance().SetCurrentSceneWithTag(sceneId);
+			SceneManager::GetInstance().SetCurrentSceneWithTag(sceneId, true);
 	}
 }

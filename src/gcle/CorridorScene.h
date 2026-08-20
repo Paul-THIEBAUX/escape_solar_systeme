@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Engine\Scene.h"
 
+class Door;
+
 class CorridorScene : public Scene
 {
 public:
@@ -19,6 +21,7 @@ private:
 	MainPlayer* player = nullptr;
 
 	std::vector<Entity*> CorridorEntities;
+	std::vector<Door*> Doors;
 
 	bool debug = false;
 	bool action = false;
