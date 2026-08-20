@@ -3,6 +3,8 @@
 #include "Core/Utils.h"
 #include "Engine/Entity.h"
 
+class Cursor;
+
 class Inventory : public Entity
 {
 private:
@@ -14,14 +16,14 @@ private:
 
 	int cursorPos = -700;
 
-	Entity* cursor = nullptr;
+	Cursor* cursor = nullptr;
 
 public:
 
 	Entity* GetCurrentItem();
 
 	void AddEntity(Entity* entity);
-	void SetCursor(Entity* new_cursor);
+	void SetCursor(Cursor* new_cursor);
 
 	void Next() { current = Clamp(current + 1, 0, static_cast<int>(inventory.size()) - 1); };
 	void Previous() { current = Clamp(current - 1, 0, static_cast<int>(inventory.size()) - 1); };

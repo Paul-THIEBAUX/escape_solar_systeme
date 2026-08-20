@@ -22,25 +22,36 @@ void CorridorScene::OnInitialize()
 	//std::string text = "Test";
 	//CreateText(text, { 40, 40 }, 50);
 
-	//creation d'un player classique
-	player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+	std::vector<Entity*> entities = GameManager::GetInstance().GetActiveEntities(m_Tag);
+	for (Entity* e : entities)
 	{
-		player->SetPosition(-280, 197);
-		if (debug == true) {
-			player->SetColor(Color::Blue);
-			player->SetScale({ 1, 1 });
-		}
-		else {
-			player->SetTexture("E_Joueur");
-			player->SetScale({ 1, 2 });
-		}
-		player->SetTag(Tag::Player);
-		player->SetRigidBody(true);
-		player->SetStatic(false);
-		player->SetLayer(1);
-		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
-		player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
+		if (e->IsTag(Tag::Player))
+			player = static_cast<MainPlayer*>(e);
 	}
+
+	//creation d'un player classique
+	if(player == nullptr)
+	{
+		player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+		{
+			//player->SetPosition(-280, 197);
+			if (debug == true) {
+				player->SetColor(Color::Blue);
+				player->SetScale({ 1, 1 });
+			}
+			else {
+				player->SetTexture("E_Joueur");
+				player->SetScale({ 1, 2 });
+			}
+			player->SetTag(Tag::Player);
+			player->SetRigidBody(true);
+			player->SetStatic(false);
+			player->SetLayer(1);
+			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+			player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
+		}
+	}
+	player->SetPosition(-280, 197);
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{

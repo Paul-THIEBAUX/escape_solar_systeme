@@ -3,6 +3,7 @@
 #include "Engine\Scene.h"
 
 class Door;
+class InteractableObject;
 
 class MainScene : public Scene
 {
@@ -22,6 +23,8 @@ private:
 	Door* door = nullptr;
 
 	std::vector<Entity*> BedRoomEntities;
+
+	std::vector<InteractableObject*> pickAbleItem;
 
 	bool debug  = false;
 	bool action = false;

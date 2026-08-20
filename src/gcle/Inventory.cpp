@@ -1,5 +1,6 @@
 #include "Inventory.h"
 #include "InputManager.h"
+#include "Cursor.h"
 
 Entity* Inventory::GetCurrentItem()
 {
@@ -34,9 +35,16 @@ void Inventory::AddEntity(Entity* entity)
 		entity->SetLayer(0);
 
 	entity->SetScale({ 1.4f, 1.4f });
+
+	int pos = -700;
+	for (Entity* e : inventory[ligne])
+	{
+		e->SetPosition(GetPosition().x + pos, GetPosition().y);
+		pos += 200;
+	}
 }
 
-void Inventory::SetCursor(Entity* new_cursor)
+void Inventory::SetCursor(Cursor* new_cursor)
 {
 	cursor = new_cursor;
 	cursor->SetTexture("cursor");
@@ -80,6 +88,15 @@ void Inventory::OnInitialize()
 	SetRigidBody(false);
 	SetScale({ 16, 1.75f });
 	SetLayer(2);
+
+	AddActiveScene("MainScene");
+	AddActiveScene("CorridorScene");
+	AddActiveScene("ReactorScene");
+	AddActiveScene("LaboScene");
+	AddActiveScene("CuisineScene");
+	AddActiveScene("StorageScene");
+	AddActiveScene("CabineScene");
+
 	inventory.push_back(std::vector<Entity*>());
 	inventory.push_back(std::vector<Entity*>());
 	inventory.push_back(std::vector<Entity*>());

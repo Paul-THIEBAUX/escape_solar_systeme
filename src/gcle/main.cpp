@@ -45,13 +45,13 @@ void CreateDebugConsole()
 
 void CreateScenes()
 {
-    SceneManager::GetInstance().CreateScene<MainScene>("MainScene");
     SceneManager::GetInstance().CreateScene<CorridorScene>("CorridorScene");
     SceneManager::GetInstance().CreateScene<ReactorScene>("ReactorScene");
     SceneManager::GetInstance().CreateScene<LaboScene>("LaboScene");
     SceneManager::GetInstance().CreateScene<CuisineScene>("CuisineScene");
     SceneManager::GetInstance().CreateScene<StorageScene>("StorageScene");
     SceneManager::GetInstance().CreateScene<CabineScene>("CabineScene");
+    SceneManager::GetInstance().CreateScene<MainScene>("MainScene");
 }
 
 void Destroy()

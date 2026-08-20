@@ -10,6 +10,8 @@
 #include "SaveManager.h"
 #include "Wall.h"
 #include "Inventory.h"
+#include "InteractableObject.h"
+#include "Cursor.h"
 
 //#include "Render/Shape.h"
 
@@ -22,26 +24,32 @@ void MainScene::OnInitialize()
 	//std::string text = "Test";
 	//CreateText(text, { 40, 40 }, 50);
 
-	//creation d'un player classique
-	player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+
+	
+	std::vector<Entity*> entities = GameManager::GetInstance().GetActiveEntities(m_Tag);
+	for (Entity* e : entities)
 	{
-		player->SetPosition(-280, 197);
-		if (debug == true) {
-			player->SetColor(Color::Blue);
-			player->SetScale({ 1, 1 });
-		}
-		else {
-			player->SetTexture("E_Joueur");
-			player->SetScale({ 1, 2 });
-		}
-		player->SetTag(Tag::Player);
-		player->SetRigidBody(true);
-		player->SetStatic(false);
-		player->SetLayer(1);
-		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({0, 0}, 0.0f, {1, 1}));
-		player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
-		player->InitCursor(CreateEntity<Entity>(gcle::Shapes::Rectangle));
+		if (e->IsTag(Tag::Player))
+			player = static_cast<MainPlayer*>(e);
 	}
+
+	//creation d'un player classique
+	if (player == nullptr)
+	{
+		player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+		{
+			//player->SetPosition(-280, 197);
+			player->SetTag(Tag::Player);
+			player->SetRigidBody(true);
+			player->SetStatic(false);
+			player->SetLayer(1);
+			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+			player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
+			player->InitCursor(CreateEntity<Cursor>(gcle::Shapes::Rectangle));
+		}
+	}
+	player->SetPosition(-280, 197);
+
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{	
@@ -118,7 +126,7 @@ void MainScene::OnInitialize()
 		BedRoomEntities.push_back(Bed);
 	}
 
-	Entity* Table = CreateEntity<Entity>(gcle::Shapes::Rectangle);
+	InteractableObject* Table = CreateEntity<InteractableObject>(gcle::Shapes::Rectangle); // InteractableObject = objet recuperable
 	{
 		Table->SetTag(Tag::Obstacle);
 		Table->SetTexture("S_Table");
@@ -129,6 +137,7 @@ void MainScene::OnInitialize()
 		Table->SetLayer(1);
 		Table->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Table);
+		pickAbleItem.push_back(Table); // A rajoute si tu veux que ca marche
 	}
 
 	Entity* Background = CreateEntity<Entity>(gcle::Shapes::Rectangle);
@@ -207,8 +216,24 @@ void MainScene::OnUpdate(Clock& time)
 		}
 	}
 
+	//Check porte
 	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
 	door->CheckDoor(player, pos);
+
+	//Pick item
+
+	if (pickAbleItem.size() == 0) return;
+
+	for (auto it = pickAbleItem.begin(); it != pickAbleItem.end();) 
+	{
+		if ((*it)->HasBeenPick())
+		{
+			player->AddEntity((*it));
+			it = pickAbleItem.erase(it);
+		}
+		else
+			it++;
+	}
 }
 
 void MainScene::OnCollisionAB(MainPlayer* A, Entity* B)

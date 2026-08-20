@@ -2,6 +2,7 @@
 #include "Engine/Entity.h"
 
 class Inventory;
+class Cursor;
 
 class MainPlayer : public Entity
 {
@@ -12,7 +13,7 @@ private:
 public:
 
 	void InitInventory(Inventory* inv);
-	void InitCursor(Entity* cursor);
+	void InitCursor(Cursor* cursor);
 
 	void OnInitialize() override;
 	void OnUpdate() override;

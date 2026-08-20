@@ -17,12 +17,12 @@ Scene* SceneManager::CreateScene(const std::string& tag) {
         std::string previousSceneTag = m_CurrentSceneTag;
         m_CurrentSceneTag = tag;
 
-        scene->OnInitialize();
+        //scene->OnInitialize();
 
         if (previousSceneTag == "")
         {
             m_CurrentSceneTag = previousSceneTag;
-            SetCurrentSceneWithTag(tag);
+            //SetCurrentSceneWithTag(tag);
         }
         else
         {
