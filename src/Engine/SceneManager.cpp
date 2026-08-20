@@ -91,7 +91,11 @@ void SceneManager::SetCurrentSceneWithTag(const std::string& tag, bool pause)
     }
 
     m_CurrentSceneTag = tag;
-    m_Scenes[tag]->OnInitialize();
+    if (!m_Scenes[tag]->m_init)
+    {
+        m_Scenes[tag]->OnInitialize();
+        m_Scenes[tag]->m_init = true;
+    }
 
     SetCurrentCamera();
 }

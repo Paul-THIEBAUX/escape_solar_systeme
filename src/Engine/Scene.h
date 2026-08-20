@@ -115,6 +115,8 @@ private:
 
 	bool m_IsPaused = false;
 
+	bool m_init = false;
+
 #ifdef _DEBUG
 private:
 	// DEBUG
