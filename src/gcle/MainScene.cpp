@@ -25,7 +25,7 @@ void MainScene::OnInitialize()
 	//CreateText(text, { 40, 40 }, 50);
 
 
-	
+	//recup le player si il a pas encore été créer
 	std::vector<Entity*> entities = GameManager::GetInstance().GetActiveEntities(m_Tag);
 	for (Entity* e : entities)
 	{
@@ -34,7 +34,7 @@ void MainScene::OnInitialize()
 	}
 
 	//creation d'un player classique
-	if (player == nullptr)
+	if (player == nullptr) //Check si le player existe déjà
 	{
 		player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
 		{
@@ -48,7 +48,7 @@ void MainScene::OnInitialize()
 			player->InitCursor(CreateEntity<Cursor>(gcle::Shapes::Rectangle));
 		}
 	}
-	player->SetPosition(-280, 197);
+	player->SetPosition(-280, 197); // seul truc qui doit être changé si le player existe déjà
 
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -216,12 +216,12 @@ void MainScene::OnUpdate(Clock& time)
 		}
 	}
 
-	//Check porte
+	//Check door
 	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
 	door->CheckDoor(player, pos);
 
-	//Pick item
 
+	//Pick an item
 	if (pickAbleItem.size() == 0) return;
 
 	for (auto it = pickAbleItem.begin(); it != pickAbleItem.end();) 
@@ -249,5 +249,13 @@ void MainScene::OnCollisionAB(MainPlayer* A, Entity* B)
 	else if (A->IsTag(Tag::Player) && B->IsTag(Tag::Trigger))
 	{
 		std::cout << "Collision Player/Trigger" << std::endl;
+	}
+}
+
+void MainScene::OnExit()
+{
+	for (Entity* e : BedRoomEntities)
+	{
+		e->Destroy();
 	}
 }
