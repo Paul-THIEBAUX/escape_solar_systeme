@@ -85,7 +85,7 @@ void CabineScene::OnInitialize()
 		Background->SetLayer(0);
 		Background->SetRigidBody(false);
 		Background->SetStatic(true);
-		Background->SetTexture("S_Corridor");
+		Background->SetTexture("S_Cocpit");
 		Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 	}
 

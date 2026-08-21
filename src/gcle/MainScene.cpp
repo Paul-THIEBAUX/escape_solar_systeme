@@ -106,9 +106,9 @@ void MainScene::OnInitialize()
 	door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
 		door->Unlock();
-		door->SetPosition(985, 400);
+		door->SetPosition(985, 250);
 		door->SetId("CorridorScene");
-		door->SetScale({ 1, 5 });
+		door->SetScale({ 1, 3 });
 		BedRoomEntities.push_back(door);
 	}
 

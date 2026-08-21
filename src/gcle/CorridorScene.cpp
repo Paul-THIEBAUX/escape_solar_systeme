@@ -83,7 +83,7 @@ void CorridorScene::OnInitialize()
 	{
 		door->Unlock();
 		door->SetPosition(985, 400);
-		door->SetId("CorridorScene");
+		door->SetId("S_Reacteur");
 		door->SetScale({ 1, 5 });
 		CorridorEntities.push_back(door);
 		Doors.push_back(door);
