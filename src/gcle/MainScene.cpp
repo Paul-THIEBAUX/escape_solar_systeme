@@ -126,7 +126,7 @@ void MainScene::OnInitialize()
 		BedRoomEntities.push_back(Bed);
 	}
 
-	InteractableObject* Table = CreateEntity<InteractableObject>(gcle::Shapes::Rectangle); // InteractableObject = objet recuperable
+	Entity* Table = CreateEntity<Entity>(gcle::Shapes::Rectangle);
 	{
 		Table->SetTag(Tag::Obstacle);
 		Table->SetTexture("S_Table");
@@ -137,7 +137,34 @@ void MainScene::OnInitialize()
 		Table->SetLayer(1);
 		Table->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Table);
-		pickAbleItem.push_back(Table); // A rajoute si tu veux que ca marche
+	}
+
+	InteractableObject* Bottle = CreateEntity<InteractableObject>(gcle::Shapes::Rectangle); 
+	{
+		Bottle->SetTag(Tag::Obstacle);
+		Bottle->SetTexture("Bouteille");
+		Bottle->SetScale({ 0.40, 1 });
+		Bottle->SetPosition(-450, 700);
+		Bottle->SetRigidBody(false);
+		Bottle->SetStatic(true);
+		Bottle->SetLayer(1);
+		Bottle->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		BedRoomEntities.push_back(Bottle);
+		pickAbleItem.push_back(Bottle); 
+	}
+
+	InteractableObject* Piece1 = CreateEntity<InteractableObject>(gcle::Shapes::Rectangle); 
+	{
+		Piece1->SetTag(Tag::Obstacle);
+		Piece1->SetTexture("S_Puzzle1");
+		Piece1->SetScale({ 0.75, 1 });
+		Piece1->SetPosition(-400, 400);
+		Piece1->SetRigidBody(false);
+		Piece1->SetStatic(true);
+		Piece1->SetLayer(1);
+		Piece1->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+		BedRoomEntities.push_back(Piece1);
+		pickAbleItem.push_back(Piece1);
 	}
 
 	Entity* Background = CreateEntity<Entity>(gcle::Shapes::Rectangle);
