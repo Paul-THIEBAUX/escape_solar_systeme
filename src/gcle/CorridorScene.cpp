@@ -82,9 +82,10 @@ void CorridorScene::OnInitialize()
 	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
 		door->Unlock();
-		door->SetPosition(985, 400);
+		door->SetPosition(985, 395);
 		door->SetId("ReactorScene");
-		door->SetScale({ 1, 5 });
+		door->SetTexture("S_Door");
+		door->SetScale({ 1, 1.6667 });
 		CorridorEntities.push_back(door);
 		Doors.push_back(door);
 	}
@@ -92,9 +93,10 @@ void CorridorScene::OnInitialize()
 	Door* door2 = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
 		door2->Unlock();
-		door2->SetPosition(-1000, 400);
+		door2->SetPosition(-1000, 395);
 		door2->SetId("MainScene");
-		door2->SetScale({ 1, 5 });
+		door2->SetTexture("S_Door");
+		door2->SetScale({ 1, 1.6667 });
 		CorridorEntities.push_back(door2);
 		Doors.push_back(door2);
 	}

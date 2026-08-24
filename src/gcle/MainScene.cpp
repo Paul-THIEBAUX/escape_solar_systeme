@@ -40,10 +40,11 @@ void MainScene::OnInitialize()
 		{
 			//player->SetPosition(-280, 197);
 			player->SetTag(Tag::Player);
+			player->SetScale({ 1, 2 });
 			player->SetRigidBody(true);
 			player->SetStatic(false);
-			player->SetLayer(1);
-			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
+			player->SetLayer(3);
+			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 50 }, 0.0f, { 1, 0.5 }));
 			player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
 			player->InitCursor(CreateEntity<Cursor>(gcle::Shapes::Rectangle));
 		}
@@ -62,6 +63,7 @@ void MainScene::OnInitialize()
 		WallUp->SetPosition(35, 50);
 		WallUp->SetScale({ 20, 1 });
 		BedRoomEntities.push_back(WallUp);
+		WallUp->SetLayer(0);
 	}
 
 	Wall* WallDown = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -75,6 +77,7 @@ void MainScene::OnInitialize()
 		WallDown->SetPosition(35, 810);
 		WallDown->SetScale({ 20, 1 });
 		BedRoomEntities.push_back(WallDown);
+		WallDown->SetLayer(0);
 	}
 
 	Wall* WallLeft = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -88,6 +91,7 @@ void MainScene::OnInitialize()
 		WallLeft->SetPosition(-1000, 400);
 		WallLeft->SetScale({ 1, 10 });
 		BedRoomEntities.push_back(WallLeft);
+		WallLeft->SetLayer(0);
 	}
 
 	Wall* WallRight = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -101,15 +105,18 @@ void MainScene::OnInitialize()
 		WallRight->SetPosition(985, 600);
 		WallRight->SetScale({ 1,5 });
 		BedRoomEntities.push_back(WallRight);
+		WallRight->SetLayer(0);
 	}
 
 	door = CreateEntity<Door>(gcle::Shapes::Rectangle);
 	{
+		door->SetTexture("S_Door");
 		door->Unlock();
 		door->SetPosition(985, 250);
 		door->SetId("CorridorScene");
 		door->SetScale({ 1, 3 });
 		BedRoomEntities.push_back(door);
+		door->SetLayer(2);
 	}
 
 
@@ -121,7 +128,7 @@ void MainScene::OnInitialize()
 		Bed->SetPosition(-275, 107);
 		Bed->SetRigidBody(true);
 		Bed->SetStatic(true);
-		Bed->SetLayer(1);
+		Bed->SetLayer(2);
 		Bed->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Bed);
 	}
@@ -134,7 +141,7 @@ void MainScene::OnInitialize()
 		Table->SetPosition(-450, 700);
 		Table->SetRigidBody(true);
 		Table->SetStatic(true);
-		Table->SetLayer(1);
+		Table->SetLayer(2);
 		Table->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Table);
 	}
@@ -147,7 +154,7 @@ void MainScene::OnInitialize()
 		Bottle->SetPosition(-450, 700);
 		Bottle->SetRigidBody(false);
 		Bottle->SetStatic(true);
-		Bottle->SetLayer(1);
+		Bottle->SetLayer(2);
 		Bottle->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Bottle);
 		pickAbleItem.push_back(Bottle); 
@@ -161,7 +168,7 @@ void MainScene::OnInitialize()
 		Piece1->SetPosition(-400, 400);
 		Piece1->SetRigidBody(false);
 		Piece1->SetStatic(true);
-		Piece1->SetLayer(1);
+		Piece1->SetLayer(2);
 		Piece1->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 		BedRoomEntities.push_back(Piece1);
 		pickAbleItem.push_back(Piece1);
@@ -173,7 +180,7 @@ void MainScene::OnInitialize()
 		Background->SetScale({ 16.8f * 1.2f, 9 * 1.2f });
 		Background->SetTag(Tag::Ground);
 		Background->SetRotation(0);
-		Background->SetLayer(0);
+		Background->SetLayer(1);
 		Background->SetRigidBody(false);
 		Background->SetStatic(true);
 		Background->SetTexture("S_BedRoom");

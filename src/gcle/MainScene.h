@@ -16,14 +16,13 @@ public:
 
 private:
 
-	Entity* pEntity		 = nullptr;
-	Entity* otherEntity  = nullptr;
+	Entity* pEntity = nullptr;
+	Entity* otherEntity = nullptr;
 	Camera* pSceneCamera = nullptr;
-	MainPlayer* player	 = nullptr;
+	MainPlayer* player = nullptr;
 	Door* door = nullptr;
 
 	std::vector<Entity*> BedRoomEntities;
-
 	std::vector<InteractableObject*> pickAbleItem;
 
 	bool debug  = false;

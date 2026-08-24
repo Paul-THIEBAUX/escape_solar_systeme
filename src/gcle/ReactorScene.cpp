@@ -71,6 +71,7 @@ void ReactorScene::OnInitialize()
 		door->Unlock();
 		door->SetPosition(985, 400);
 		door->SetId("CorridorScene");
+		door->SetTexture("S_Door");
 		door->SetScale({ 1, 5 });
 		ReactorEntities.push_back(door);
 	}
@@ -151,7 +152,27 @@ void ReactorScene::OnUpdate(Clock& time)
 			pEntity->Destroy();
 		}
 	}
+
+	//Check porte
+	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
+	door->CheckDoor(player, pos);
+
+	//Pick item
+
+	if (pickAbleItem.size() == 0) return;
+
+	for (auto it = pickAbleItem.begin(); it != pickAbleItem.end();)
+	{
+		if ((*it)->HasBeenPick())
+		{
+			player->AddEntity((*it));
+			it = pickAbleItem.erase(it);
+		}
+		else
+			it++;
+	}
 }
+
 
 void ReactorScene::OnCollisionAB(MainPlayer* A, Entity* B)
 {

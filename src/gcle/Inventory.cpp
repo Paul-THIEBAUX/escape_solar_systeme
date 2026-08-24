@@ -30,7 +30,7 @@ void Inventory::AddEntity(Entity* entity)
 	}
 
 	if (ligne == current_line)
-		entity->SetLayer(4);
+		entity->SetLayer(5);
 	else
 		entity->SetLayer(0);
 
@@ -50,7 +50,7 @@ void Inventory::SetCursor(Cursor* new_cursor)
 	cursor->SetTexture("cursor");
 	cursor->SetRigidBody(false);
 	cursor->SetScale({ 1.5f,1.5f });
-	cursor->SetLayer(3);
+	cursor->SetLayer(4);
 	cursor->SetPosition(GetPosition().x - 700, GetPosition().y);
 }
 
@@ -62,7 +62,7 @@ void Inventory::NextLine()
 	current_line = Clamp(current_line - 1, 0, 2);
 
 	for (Entity* e : inventory[current_line])
-		e->SetLayer(4);
+		e->SetLayer(5);
 	
 	current = 0;
 	cursorPos = -700;
@@ -87,7 +87,7 @@ void Inventory::OnInitialize()
 	SetColor(Color(100,100,100,255));
 	SetRigidBody(false);
 	SetScale({ 16, 1.75f });
-	SetLayer(2);
+	SetLayer(3);
 
 	AddActiveScene("MainScene");
 	AddActiveScene("CorridorScene");

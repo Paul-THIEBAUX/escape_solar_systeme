@@ -2,6 +2,9 @@
 #include "Player.h"
 #include "Engine\Scene.h"
 
+class Door;
+class InteractableObject;
+
 class CabineScene : public Scene
 {
 public:
@@ -17,11 +20,11 @@ private:
 	Entity* otherEntity = nullptr;
 	Camera* pSceneCamera = nullptr;
 	MainPlayer* player = nullptr;
+	Door* door = nullptr;
 
 	std::vector<Entity*> CabineEntities;
+	std::vector<InteractableObject*> pickAbleItem;
 
 	bool debug = false;
 	bool action = false;
 };
-
-

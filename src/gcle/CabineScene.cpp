@@ -71,6 +71,7 @@ void CabineScene::OnInitialize()
 		door->Unlock();
 		door->SetPosition(985, 400);
 		door->SetId("CorridorScene");
+		door->SetTexture("S_Door");
 		door->SetScale({ 1, 5 });
 		CabineEntities.push_back(door);
 	}
