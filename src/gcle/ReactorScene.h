@@ -24,6 +24,7 @@ private:
 
 	std::vector<Entity*> ReactorEntities;
 	std::vector<InteractableObject*> pickAbleItem;
+	std::vector<Door*> Doors;
 
 	bool debug = false;
 	bool action = false;

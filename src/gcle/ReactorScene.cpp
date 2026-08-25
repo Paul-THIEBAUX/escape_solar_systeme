@@ -24,6 +24,15 @@ void ReactorScene::OnInitialize()
 	//std::string text = "Test";
 	//CreateText(text, { 40, 40 }, 50);
 
+
+	//recup le player si il a pas encore été créer
+	std::vector<Entity*> entities = GameManager::GetInstance().GetActiveEntities(m_Tag);
+	for (Entity* e : entities)
+	{
+		if (e->IsTag(Tag::Player))
+			player = static_cast<MainPlayer*>(e);
+	}
+
 	//creation d'un player classique
 	if (player == nullptr) //Check si le player existe déjà
 	{
@@ -75,6 +84,7 @@ void ReactorScene::OnInitialize()
 		door->SetTexture("S_Door");
 		door->SetScale({ 1, 5 });
 		ReactorEntities.push_back(door);
+		Doors.push_back(door);
 	}
 
 
