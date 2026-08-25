@@ -13,6 +13,19 @@
 #include "InteractableObject.h"
 #include "Cursor.h"
 
+//---------------------------------------------------------------------//
+//      If you look at this code and think "this is a mess"            //
+//  you need to understand that this is a prototype, and the code      //
+//  will be cleaned up later plus I have a potato PC so I don't have   //
+// a lot of engine that will corectly work on my PC so I borowed the   //
+// engine from my friend and I don't have the time to learn it         //
+// so I just ask him to help me to understand. to conclude :           //
+// - I didn't have from the 1st of july to make this but from the 28th //
+// - I will still update this code later                               //
+// so please don't judge me for this code to hard                      //
+//---------------------------------------------------------------------//
+
+
 //#include "Render/Shape.h"
 
 void MainScene::OnInitialize()
@@ -151,7 +164,7 @@ void MainScene::OnInitialize()
 		Bottle->SetTag(Tag::Obstacle);
 		Bottle->SetTexture("Bouteille");
 		Bottle->SetScale({ 0.40, 1 });
-		Bottle->SetPosition(-450, 700);
+		Bottle->SetPosition(-450, 600);
 		Bottle->SetRigidBody(false);
 		Bottle->SetStatic(true);
 		Bottle->SetLayer(2);
