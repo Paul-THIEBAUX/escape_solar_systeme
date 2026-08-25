@@ -23,11 +23,13 @@ void Inventory::AddEntity(Entity* entity)
 		inventory[1].push_back(entity);
 		ligne = 1;
 	}
-	else
+	else if(inventory[2].size() < 8)
 	{
 		inventory[2].push_back(entity);
 		ligne = 2;
 	}
+ else 
+  return;
 
 	if (ligne == current_line)
 		entity->SetLayer(5);

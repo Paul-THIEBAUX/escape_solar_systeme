@@ -13,6 +13,7 @@ public:
 	void OnUpdate(Clock& time) override;
 
 	void OnCollisionAB(MainPlayer* A, Entity* B);
+	void OnExit() override;
 
 private:
 
