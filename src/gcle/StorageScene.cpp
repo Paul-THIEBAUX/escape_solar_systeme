@@ -25,22 +25,20 @@ void StorageScene::OnInitialize()
 	//CreateText(text, { 40, 40 }, 50);
 
 	//creation d'un player classique
-	player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+	if (player == nullptr) //Check si le player existe déjà
 	{
-		player->SetPosition(-280, 197);
-		if (debug == true) {
-			player->SetColor(Color::Blue);
-			player->SetScale({ 1, 1 });
-		}
-		else {
-			player->SetTexture("E_Joueur");
+		player = CreateEntity<MainPlayer>(gcle::Shapes::Rectangle);
+		{
+			//player->SetPosition(-280, 197);
+			player->SetTag(Tag::Player);
 			player->SetScale({ 1, 2 });
+			player->SetRigidBody(true);
+			player->SetStatic(false);
+			player->SetLayer(3);
+			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 50 }, 0.0f, { 1, 0.5 }));
+			player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
+			player->InitCursor(CreateEntity<Cursor>(gcle::Shapes::Rectangle));
 		}
-		player->SetTag(Tag::Player);
-		player->SetRigidBody(true);
-		player->SetStatic(false);
-		player->SetLayer(1);
-		player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 	}
 
 	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
