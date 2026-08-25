@@ -39,6 +39,9 @@ void Door::OnCollision(Entity* collidedWith)
 
 void Door::CheckDoor(Entity* player, const Vector2f& pos)
 {
+	if (player == nullptr) 
+		return;
+
 	if (GetPosition().GetDistance(player->GetPosition()) > 200)
 		return;
 
