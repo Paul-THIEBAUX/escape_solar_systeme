@@ -9,6 +9,9 @@
 #include "Door.h"
 #include "SaveManager.h"
 #include "Wall.h"
+#include "Inventory.h"
+#include "InteractableObject.h"
+#include "Cursor.h"
 
 //#include "Render/Shape.h"
 
