@@ -162,8 +162,29 @@ void CuisineScene::OnUpdate(Clock& time)
 			pEntity->Destroy();
 		}
 	}
-}
 
+	//Check porte
+	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
+	for (Door* door : Doors)
+	{
+		door->CheckDoor(player, pos);
+	}
+
+	//Pick item
+
+	if (pickAbleItem.size() == 0) return;
+
+	for (auto it = pickAbleItem.begin(); it != pickAbleItem.end();)
+	{
+		if ((*it)->HasBeenPick())
+		{
+			player->AddEntity((*it));
+			it = pickAbleItem.erase(it);
+		}
+		else
+			it++;
+	}
+}
 void CuisineScene::OnCollisionAB(MainPlayer* A, Entity* B)
 {
 	if (A->IsTag(Tag::Player) && B->IsTag(Tag::Ground))

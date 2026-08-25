@@ -166,7 +166,10 @@ void ReactorScene::OnUpdate(Clock& time)
 
 	//Check porte
 	Vector2f pos = GetMainCamera()->GetScreenMousePosition();
-	door->CheckDoor(player, pos);
+	for (Door* door : Doors)
+	{
+		door->CheckDoor(player, pos);
+	}
 
 	//Pick item
 
