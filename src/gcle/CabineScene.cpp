@@ -61,6 +61,7 @@ void CabineScene::OnInitialize()
 		WallUp->SetPosition(35, 50);
 		WallUp->SetScale({ 20, 1 });
 		CabineEntities.push_back(WallUp);
+		WallUp->SetLayer(0);
 	}
 
 	Wall* WallDown = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -74,6 +75,35 @@ void CabineScene::OnInitialize()
 		WallDown->SetPosition(35, 810);
 		WallDown->SetScale({ 20, 1 });
 		CabineEntities.push_back(WallDown);
+		WallDown->SetLayer(0);
+	}
+
+	Wall* WallLeft = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallLeft->SetColor(Color::Red);
+		}
+		else {
+			WallLeft->SetColor(Color::Transparent);
+		}
+		WallLeft->SetPosition(-1000, 400);
+		WallLeft->SetScale({ 1, 10 });
+		CabineEntities.push_back(WallLeft);
+		WallLeft->SetLayer(0);
+	}
+
+	Wall* WallRight = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallRight->SetColor(Color::Red);
+		}
+		else {
+			WallRight->SetColor(Color::Transparent);
+		}
+		WallRight->SetPosition(1000, 400);
+		WallRight->SetScale({ 1,10 });
+		CabineEntities.push_back(WallRight);
+		WallRight->SetLayer(0);
 	}
 
 	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);

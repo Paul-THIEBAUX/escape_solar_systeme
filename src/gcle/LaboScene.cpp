@@ -61,6 +61,7 @@ void LaboScene::OnInitialize()
 		WallUp->SetPosition(35, 50);
 		WallUp->SetScale({ 20, 1 });
 		LaboEntities.push_back(WallUp);
+		WallUp->SetLayer(0);
 	}
 
 	Wall* WallDown = CreateEntity<Wall>(gcle::Shapes::Rectangle);
@@ -74,6 +75,49 @@ void LaboScene::OnInitialize()
 		WallDown->SetPosition(35, 810);
 		WallDown->SetScale({ 20, 1 });
 		LaboEntities.push_back(WallDown);
+		WallDown->SetLayer(0);
+	}
+
+	Wall* WallLeft = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallLeft->SetColor(Color::Red);
+		}
+		else {
+			WallLeft->SetColor(Color::Transparent);
+		}
+		WallLeft->SetPosition(-1000, 400);
+		WallLeft->SetScale({ 1, 10 });
+		LaboEntities.push_back(WallLeft);
+		WallLeft->SetLayer(0);
+	}
+
+	Wall* WallRight = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallRight->SetColor(Color::Red);
+		}
+		else {
+			WallRight->SetColor(Color::Transparent);
+		}
+		WallRight->SetPosition(1000, 400);
+		WallRight->SetScale({ 1,10 });
+		LaboEntities.push_back(WallRight);
+		WallRight->SetLayer(0);
+	}
+
+	Wall* WallExtra = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallExtra->SetColor(Color::Red);
+		}
+		else {
+			WallExtra->SetColor(Color::Transparent);
+		}
+		WallExtra->SetPosition(375, 210);
+		WallExtra->SetScale({ 9,9 });
+		LaboEntities.push_back(WallExtra);
+		WallExtra->SetLayer(0);
 	}
 
 	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
@@ -83,6 +127,7 @@ void LaboScene::OnInitialize()
 		door->SetId("CorridorScene");
 		door->SetTexture("S_Door");
 		door->SetScale({ 1, 5 });
+		door->SetLayer(2);
 		LaboEntities.push_back(door);
 		Doors.push_back(door);
 	}
@@ -94,10 +139,10 @@ void LaboScene::OnInitialize()
 		Background->SetScale({ 16.8f * 1.2f, 9 * 1.2f });
 		Background->SetTag(Tag::Ground);
 		Background->SetRotation(0);
-		Background->SetLayer(0);
+		Background->SetLayer(1);
 		Background->SetRigidBody(false);
 		Background->SetStatic(true);
-		Background->SetTexture("S_Corridor");
+		Background->SetTexture("S_Labo");
 		Background->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 	}
 
