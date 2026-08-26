@@ -46,59 +46,176 @@ void CorridorScene::OnInitialize()
 			player->SetTag(Tag::Player);
 			player->SetRigidBody(true);
 			player->SetStatic(false);
-			player->SetLayer(1);
+			player->SetLayer(3);
 			player->CreateCollider(gcle::Shapes::Rectangle, true, gcle::ColliderDesc({ 0, 0 }, 0.0f, { 1, 1 }));
 			player->InitInventory(CreateEntity<Inventory>(gcle::Shapes::Rectangle));
 		}
 	}
 	player->SetPosition(-280, 197);
 
-	Wall* WallUp = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+
+
+	
+
+
+
+	Wall* WallNE = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
 		if (debug == true) {
-			WallUp->SetColor(Color::Red);
+			WallNE->SetColor(Color::Red);
 		}
 		else {
-			WallUp->SetColor(Color::Transparent);;
+			WallNE->SetColor(Color::Transparent);;
 		}
-		WallUp->SetPosition(35, 50);
-		WallUp->SetScale({ 20, 1 });
-		CorridorEntities.push_back(WallUp);
+		WallNE->SetPosition(-780, 60);
+		WallNE->SetScale({ 5, 5 });
+		CorridorEntities.push_back(WallNE);
+		WallNE->SetLayer(0);
 	}
 
-	Wall* WallDown = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	Wall* WallN = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
 		if (debug == true) {
-			WallDown->SetColor(Color::Red);
+			WallN->SetColor(Color::Red);
 		}
 		else {
-			WallDown->SetColor(Color::Transparent);
+			WallN->SetColor(Color::Transparent);;
 		}
-		WallDown->SetPosition(35, 810);
-		WallDown->SetScale({ 20, 1 });
-		CorridorEntities.push_back(WallDown);
+		WallN->SetPosition(75, 60);
+		WallN->SetScale({ 7.7, 5 });
+		CorridorEntities.push_back(WallN);
+		WallN->SetLayer(0);
 	}
 
-	Door* door = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	Wall* WallNW = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
-		door->Unlock();
-		door->SetPosition(985, 395);
-		door->SetId("ReactorScene");
-		door->SetTexture("S_Door");
-		door->SetScale({ 1, 1.6667 });
-		CorridorEntities.push_back(door);
-		Doors.push_back(door);
+		if (debug == true) {
+			WallNW->SetColor(Color::Red);
+		}
+		else {
+			WallNW->SetColor(Color::Transparent);
+		}
+		WallNW->SetPosition(950, 60);
+		WallNW->SetScale({ 5, 5 });
+		CorridorEntities.push_back(WallNW);
+		WallNW->SetLayer(0);
 	}
 
-	Door* door2 = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	Wall* WallSE = CreateEntity<Wall>(gcle::Shapes::Rectangle);
 	{
-		door2->Unlock();
-		door2->SetPosition(-1000, 395);
-		door2->SetId("MainScene");
-		door2->SetTexture("S_Door");
-		door2->SetScale({ 1, 1.6667 });
-		CorridorEntities.push_back(door2);
-		Doors.push_back(door2);
+		if (debug == true) {
+			WallSE->SetColor(Color::Red);
+		}
+		else {
+			WallSE->SetColor(Color::Transparent);
+		}
+		WallSE->SetPosition(-780, 730);
+		WallSE->SetScale({ 5, 5 });
+		CorridorEntities.push_back(WallSE);
+		WallSE->SetLayer(0);
+	}
+
+	Wall* WallS = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallS->SetColor(Color::Red);
+		}
+		else {
+			WallS->SetColor(Color::Transparent);;
+		}
+		WallS->SetPosition(75, 730);
+		WallS->SetScale({ 7.7, 5 });
+		CorridorEntities.push_back(WallS);
+		WallS->SetLayer(0);
+	}
+
+	Wall* WallSW = CreateEntity<Wall>(gcle::Shapes::Rectangle);
+	{
+		if (debug == true) {
+			WallSW->SetColor(Color::Red);
+		}
+		else {
+			WallSW->SetColor(Color::Transparent);
+		}
+		WallSW->SetPosition(950, 730);
+		WallSW->SetScale({ 5, 5 });
+		CorridorEntities.push_back(WallSW);
+		WallSW->SetLayer(0);
+	}
+
+
+
+	Door* doorE = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorE->Unlock();
+		doorE->SetPosition(1000, 395);
+		doorE->SetId("ReactorScene");
+		doorE->SetTexture("S_Door");
+		doorE->SetScale({ 1, 1.6667 });
+		doorE->SetLayer(2);
+		CorridorEntities.push_back(doorE);
+		Doors.push_back(doorE);
+		
+	}
+
+	Door* doorNE = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorNE->Unlock();
+		doorNE->SetPosition(-417, 60);
+		doorNE->SetId("LaboScene");
+		doorNE->SetTexture("S_Door90");
+		doorNE->SetScale({ 2.3, 1 });
+		doorNE->SetLayer(2);
+		CorridorEntities.push_back(doorNE);
+		Doors.push_back(doorNE);
+	}
+
+	Door* doorSE = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorSE->Unlock();
+		doorSE->SetPosition(-417, 730);
+		doorSE->SetId("CuisineScene");
+		doorSE->SetTexture("S_Door90");
+		doorSE->SetScale({ 2.3, 1 });
+		doorSE->SetLayer(2);
+		CorridorEntities.push_back(doorSE);
+		Doors.push_back(doorSE);
+	}
+
+	Door* doorNW = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorNW->Unlock();
+		doorNW->SetPosition(580, 60);
+		doorNW->SetId("CabineScene");
+		doorNW->SetTexture("S_Door90");
+		doorNW->SetScale({ 2.3, 1 });
+		doorNW->SetLayer(2);
+		CorridorEntities.push_back(doorNW);
+		Doors.push_back(doorNW);
+	}
+
+	Door* doorSW = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorSW->Unlock();
+		doorSW->SetPosition(580, 730);
+		doorSW->SetId("StorageScene");
+		doorSW->SetTexture("S_Door90");
+		doorSW->SetScale({ 2.3, 1 });
+		doorSW->SetLayer(2);
+		CorridorEntities.push_back(doorSW);
+		Doors.push_back(doorSW);
+	}
+
+	Door* doorW = CreateEntity<Door>(gcle::Shapes::Rectangle);
+	{
+		doorW->Unlock();
+		doorW->SetPosition(-1000, 395);
+		doorW->SetId("MainScene");
+		doorW->SetTexture("S_Door");
+		doorW->SetScale({ 1, 1.6667 });
+		doorW->SetLayer(2);
+		CorridorEntities.push_back(doorW);
+		Doors.push_back(doorW);
 	}
 
 
@@ -108,7 +225,7 @@ void CorridorScene::OnInitialize()
 		Background->SetScale({ 16.8f * 1.2f, 9 * 1.2f });
 		Background->SetTag(Tag::Ground);
 		Background->SetRotation(0);
-		Background->SetLayer(0);
+		Background->SetLayer(1);
 		Background->SetRigidBody(false);
 		Background->SetStatic(true);
 		Background->SetTexture("S_Corridor");
